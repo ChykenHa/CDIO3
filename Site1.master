@@ -300,56 +300,40 @@ body {
     overflow-y: auto;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.8);
-    
-    /* Tạo hình dạng mũi tên hướng xuống */
-    clip-path: polygon(
-        0 0,           /* Góc trên trái */
-        100% 0,        /* Góc trên phải */
-        100% 85%,      /* Điểm bên phải của mũi tên */
-        50% 100%,      /* Đỉnh mũi tên (giữa dưới cùng) */
-        0 85%          /* Điểm bên trái của mũi tên */
-    );
-    
-    /* Điều chỉnh padding để nội dung không bị cắt */
-    padding-bottom: calc(var(--space-md) + 60px); /* Thêm khoảng trống cho phần mũi tên */
 }
 
-/* Giữ nguyên tất cả CSS khác của sidebar */
 .sidebar .menu-item {
-    color: white; /* Màu trắng cho text */
+    color: var(--text-light);
     text-align: left;
     padding: var(--space-md) var(--space-lg);
     margin-bottom: var(--space-sm);
-    width: 100%; /* Chiều rộng đầy đủ */
-    display: block; /* Đảm bảo button hiển thị dạng block */
-    box-sizing: border-box; /* Bao gồm padding và border trong tính toán width */
+    width: 100%;
     border-radius: var(--radius-md);
     transition: all var(--transition-normal);
     font-weight: 600;
     position: relative;
     overflow: hidden;
-    background: #3EAEF4 !important; /* Background màu xanh dương */
+    /* Updated gradient for blue theme */
+    background: linear-gradient(to right, var(--primary), var(--primary-dark)) !important;
     box-shadow: var(--shadow-sm);
-    border: 1px solid #3EAEF4; /* Border cùng màu */
+    border: none;
 }
 
 .sidebar .menu-item:hover {
-    background: #2A9FE8 !important; /* Background tối hơn khi hover */
-    transform: translateY(-1px);
+    background: linear-gradient(to right, var(--primary-light), var(--primary)) !important;
+    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
     color: white;
-    border-color: #2A9FE8;
 }
 
 .sidebar .menu-item.active {
-    background: #1E90DC !important; /* Background tối hơn khi active */
+    background: linear-gradient(to right, var(--secondary), var(--accent)) !important;
     color: white;
     box-shadow: var(--shadow-md);
-    border-color: #1E90DC;
 }
 
 .sidebar .menu-item::before {
-    content: '';
+    content: '►';
     margin-right: var(--space-sm);
     display: inline-block;
     transition: transform var(--transition-normal);
@@ -357,7 +341,7 @@ body {
 }
 
 .sidebar .menu-item:hover::before {
-    transform: none;
+    transform: translateX(3px);
 }
 
 .sidebar-section-title {
@@ -373,51 +357,6 @@ body {
 
 .sidebar-section-title:first-child {
     margin-top: 0;
-}
-
-/* Responsive cho sidebar mũi tên */
-@media (max-width: 992px) {
-    .sidebar {
-        clip-path: none; /* Bỏ hình mũi tên trên mobile */
-        padding-bottom: var(--space-md); /* Reset padding */
-        border-radius: var(--radius-md); /* Khôi phục border radius bình thường */
-    }
-}
-
-/* Alternative: Nếu muốn mũi tên sắc nét hơn */
-.sidebar-sharp-arrow {
-    clip-path: polygon(
-        0 0,           /* Góc trên trái */
-        100% 0,        /* Góc trên phải */
-        100% 80%,      /* Điểm bên phải của mũi tên */
-        50% 100%,      /* Đỉnh mũi tên (giữa dưới cùng) */
-        0 80%          /* Điểm bên trái của mũi tên */
-    );
-    padding-bottom: calc(var(--space-md) + 80px);
-}
-
-/* Alternative: Mũi tên bo tròn hơn */
-.sidebar-curved-arrow {
-    clip-path: polygon(
-        0 0,           /* Góc trên trái */
-        100% 0,        /* Góc trên phải */
-        100% 88%,      /* Điểm bên phải của mũi tên */
-        50% 100%,      /* Đỉnh mũi tên (giữa dưới cùng) */
-        0 88%          /* Điểm bên trái của mũi tên */
-    );
-    padding-bottom: calc(var(--space-md) + 50px);
-}
-
-/* Alternative: Mũi tên hướng xuống nhỏ hơn */
-.sidebar-small-arrow {
-    clip-path: polygon(
-        0 0,           /* Góc trên trái */
-        100% 0,        /* Góc trên phải */
-        100% 90%,      /* Điểm bên phải của mũi tên */
-        50% 100%,      /* Đỉnh mũi tên (giữa dưới cùng) */
-        0 90%          /* Điểm bên trái của mũi tên */
-    );
-    padding-bottom: calc(var(--space-md) + 40px);
 }
 
 /* Main Content */
@@ -951,7 +890,6 @@ body {
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         <asp:Button ID="Button7" runat="server" Text="Tài Khoản" CssClass="menu-item" OnClick="Account_Click" />
-                        <asp:Button ID="Button8" runat="server" Text="Đăng Xuất" CssClass="menu-item" OnClick="Logout_Click" />
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>
